@@ -22,7 +22,7 @@ $CONFIG['rrdtool_opts'] = array();
 #$CONFIG['cat']['Mailservers'] = '/mail\d+/';
 
 # default plugins to show on host page
-$CONFIG['overview'] = array('load', 'cpu', 'memory', 'swap');
+$CONFIG['overview'] = array('load' , 'cpu' , 'cpufreq' , 'memory' , 'vmem' , 'processes' , 'conntrack' , 'contextswitch' , 'entropy' , 'irq' , 'netlink' , 'disk' , 'df' , 'uptime' , 'users' , 'collectd');
 
 # example of filter to show only the if_octets of eth0 on host page
 # (interface must be enabled in the overview config array)
