@@ -41,6 +41,10 @@ files = {
 
 actions = {}
 
+directories = {}
+
+git_deploy = {}
+
 if node.metadata.get('collectd', {}).get('write_rrd', True):
     pkg_yum['collectd-rrdtool'] = {
         'triggers': [
@@ -151,3 +155,27 @@ if node.metadata.get('collectd', {}).get('server'):
                     "action:firewalld_reload",
                 ],
             }
+
+if node.metadata.get('collectd', {}).get('cgp', {}):
+    cgp_install_path = node.metadata.get('collectd', {}).get('cgp', {}).get('install_path')
+    directories['{}'.format(cgp_install_path)] = {
+        "mode": "0755",
+    }
+
+    git_deploy['{}'.format(cgp_install_path)] = {
+        'needs': [
+            "directory:{}".format(cgp_install_path)
+        ],
+        'repo': "https://github.com/pommi/CGP.git",
+        'rev': "master",
+    }
+
+    files['{}/conf/config.local.php'.format(cgp_install_path)] = {
+        'source': "cgp_config",
+        'owner': "root",
+        'group': "root",
+        'mode': "0644",
+        'needs': [
+            "git_deploy:{}".format(cgp_install_path)
+        ],
+    }
