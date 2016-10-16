@@ -38,10 +38,17 @@ This bundle has been tested on the following systems:
                 'user': "username",
                 'password': "secret",
             },
+            'cgp': { # optional, installs the collectd graph panel by pommi
+                'install_path': "/var/www/monitoring/htdocs/cgp", # required
+            },
         },
     }
 
 ## Notes
+
+### Metadata for collection
+
+There are a few options to manipulate what is collected by default. e.g. if you're running lxc containers you won't need to collectd load statistics. Take a look into `files/collectd.conf` for details.
 
 ### Server configuration
 
