@@ -101,7 +101,7 @@ if node.metadata.get('collectd', {}).get('server'):
         'source': "{}/{}.auth".format(collectd_server_auth_dir, node.name),
         'owner': "root",
         'group': "root",
-        'mode': "0640",
+        'mode': "0644",
         'needs': [
             "pkg_yum:collectd",
         ],
