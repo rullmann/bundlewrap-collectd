@@ -41,7 +41,16 @@ files = {
 
 actions = {}
 
-directories = {}
+directories = {
+    "/vetc/collectd/plugins": {
+        "mode": "0755",
+        "owner": "root",
+        "group": "root",
+        'needs': [
+            "pkg_yum:collectd",
+        ],
+    },
+}
 
 git_deploy = {}
 
