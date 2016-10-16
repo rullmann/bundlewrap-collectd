@@ -42,7 +42,7 @@ files = {
 actions = {}
 
 directories = {
-    "/vetc/collectd/plugins": {
+    "/etc/collectd/plugins": {
         "mode": "0755",
         "owner": "root",
         "group": "root",
