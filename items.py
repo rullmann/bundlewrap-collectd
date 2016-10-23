@@ -97,7 +97,7 @@ if node.metadata.get('collectd', {}).get('server'):
         ],
     }
 
-    files['/etc/collectd.d/auth_file'] = {
+    files['/etc/collectd.auth'] = {
         'source': "{}/{}.auth".format(collectd_server_auth_dir, node.name),
         'owner': "root",
         'group': "root",
