@@ -1,7 +1,7 @@
 import os
 collectd_server_auth_dir = os.getcwd() + "/data/collectd/server_auth"
 
-pkg_yum = {
+pkg_dnf = {
     'collectd': {},
     'collectd-curl': {},
     'collectd-curl_json': {},
@@ -15,7 +15,7 @@ svc_systemd = {
     'collectd': {
         'enabled': True,
         'needs': [
-            "pkg_yum:collectd",
+            "pkg_dnf:collectd",
         ],
     },
 }
@@ -31,7 +31,7 @@ files = {
             'collectd': node.metadata.get('collectd', {}),
         },
         'needs': [
-            "pkg_yum:collectd",
+            "pkg_dnf:collectd",
         ],
         'triggers': [
             "svc_systemd:collectd:restart",
@@ -47,7 +47,7 @@ directories = {
         "owner": "root",
         "group": "root",
         'needs': [
-            "pkg_yum:collectd",
+            "pkg_dnf:collectd",
         ],
     },
 }
@@ -55,7 +55,7 @@ directories = {
 git_deploy = {}
 
 if node.metadata.get('collectd', {}).get('write_rrd', True):
-    pkg_yum['collectd-rrdtool'] = {
+    pkg_dnf['collectd-rrdtool'] = {
         'triggers': [
             "svc_systemd:collectd:restart",
         ],
@@ -72,7 +72,7 @@ if node.metadata.get('collectd', {}).get('client'):
             'client': node.metadata.get('collectd', {}).get('client', {}),
         },
         'needs': [
-            "pkg_yum:collectd",
+            "pkg_dnf:collectd",
         ],
         'triggers': [
             "svc_systemd:collectd:restart",
@@ -90,7 +90,7 @@ if node.metadata.get('collectd', {}).get('server'):
             'server': node.metadata.get('collectd', {}).get('server', {}),
         },
         'needs': [
-            "pkg_yum:collectd",
+            "pkg_dnf:collectd",
         ],
         'triggers': [
             "svc_systemd:collectd:restart",
@@ -103,7 +103,7 @@ if node.metadata.get('collectd', {}).get('server'):
         'group': "root",
         'mode': "0644",
         'needs': [
-            "pkg_yum:collectd",
+            "pkg_dnf:collectd",
         ],
         'triggers': [
             "svc_systemd:collectd:restart",
@@ -119,7 +119,7 @@ if node.metadata.get('collectd', {}).get('server'):
                 'unless': "firewall-cmd --zone={} --list-ports | grep {}/udp".format(zone, port),
                 'cascade_skip': False,
                 'needs': [
-                    "pkg_yum:firewalld",
+                    "pkg_dnf:firewalld",
                 ],
                 'triggers': [
                     "action:firewalld_reload",
@@ -132,7 +132,7 @@ if node.metadata.get('collectd', {}).get('server'):
                 'unless': "firewall-cmd --zone={} --list-ports | grep {}/udp".format(default_zone, port),
                 'cascade_skip': False,
                 'needs': [
-                    "pkg_yum:firewalld",
+                    "pkg_dnf:firewalld",
                 ],
                 'triggers': [
                     "action:firewalld_reload",
@@ -146,7 +146,7 @@ if node.metadata.get('collectd', {}).get('server'):
                     'unless': "firewall-cmd --zone={} --list-ports | grep {}/udp".format(custom_zone, port),
                     'cascade_skip': False,
                     'needs': [
-                        "pkg_yum:firewalld",
+                        "pkg_dnf:firewalld",
                     ],
                     'triggers': [
                         "action:firewalld_reload",
@@ -158,7 +158,7 @@ if node.metadata.get('collectd', {}).get('server'):
                 'unless': "firewall-cmd --list-ports | grep {}/udp".format(port),
                 'cascade_skip': False,
                 'needs': [
-                    "pkg_yum:firewalld",
+                    "pkg_dnf:firewalld",
                 ],
                 'triggers': [
                     "action:firewalld_reload",
