@@ -20,6 +20,7 @@ This bundle has been tested on the following systems:
 * Bundles:
   * [firewalld](https://github.com/rullmann/bundlewrap-firewalld)
     * Zone settings from firewalld bundle will be used, if you do not overwrite this behaviour in the metdata.
+  * [monit](https://github.com/rullmann/bundlewrap-monit)
 
 ## Metadata
 
