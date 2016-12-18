@@ -188,3 +188,18 @@ if node.metadata.get('collectd', {}).get('cgp', {}):
             "git_deploy:{}".format(cgp_install_path)
         ],
     }
+
+if node.has_bundle("monit"):
+    files['/etc/monit.d/collectd'] = {
+        'source': "monit",
+        'mode': "0640",
+        'owner': "root",
+        'group': "root",
+        'content_type': "mako",
+       'context': {
+            'server': node.metadata.get('collectd', {}).get('server', {}),
+        },
+        'triggers': [
+            "svc_systemd:monit:restart",
+        ],
+    }

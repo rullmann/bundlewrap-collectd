@@ -1,0 +1,12 @@
+# collectd
+
+  check process collectd
+    matching "/usr/sbin/collectd"
+    start program = "/usr/bin/systemctl start collectd"
+    stop program  = "/usr/bin/systemctl stop collectd"
+    if cpu > 10% for 2 cycles then alert
+    if cpu > 15% for 5 cycles then restart
+% if node.metadata.get('collectd', {}).get('server'):
+    if failed host ${server.get('ip')} port ${server.get('port', "25826")} type udp
+% endif
+    if 3 restarts within 5 cycles then timeout
