@@ -50,6 +50,14 @@ directories = {
             "pkg_dnf:collectd",
         ],
     },
+    "/etc/collectd.d/types": {
+        "mode": "0755",
+        "owner": "root",
+        "group": "root",
+        'needs': [
+            "pkg_dnf:collectd",
+        ],
+    },
 }
 
 git_deploy = {}
