@@ -24,6 +24,8 @@ This bundle has been tested on the following systems:
     * collectd is being monitored by monit
   * [hddtemp](https://github.com/rullmann/bundlewrap-hddtemp)
     * Temperature data is being parsed by collectd
+  * [temper](https://github.com/rullmann/bundlewrap-temper)
+    * Temperature data is being parsed by collectd
 
 ## Metadata
 
