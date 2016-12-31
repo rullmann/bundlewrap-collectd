@@ -15,8 +15,6 @@ This bundle has been tested on the following systems:
 
 ## Integrations
 
-## Integrations
-
 * Bundles:
   * [firewalld](https://github.com/rullmann/bundlewrap-firewalld)
     * Zone settings from firewalld bundle will be used, if you do not overwrite this behaviour in the metdata.
@@ -26,6 +24,8 @@ This bundle has been tested on the following systems:
     * Temperature data is being parsed by collectd
   * [temper](https://github.com/rullmann/bundlewrap-temper)
     * Temperature data is being parsed by collectd
+  * [PostgreSQL](https://github.com/rullmann/bundlewrap-postgresql)
+    * Some nice database stats!
 
 ## Metadata
 
