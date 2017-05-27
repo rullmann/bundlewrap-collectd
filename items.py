@@ -6,6 +6,7 @@ pkg_dnf = {
     'collectd-curl': {},
     'collectd-curl_json': {},
     'collectd-curl_xml': {},
+    'collectd-disk': {},
     'collectd-lvm': {},
     'collectd-netlink': {},
     'rrdtool': {},
