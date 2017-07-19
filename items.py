@@ -1,6 +1,3 @@
-import os
-collectd_server_auth_dir = os.getcwd() + "/data/collectd/server_auth"
-
 pkg_dnf = {
     'collectd': {},
     'collectd-curl': {},
@@ -106,7 +103,7 @@ if node.metadata.get('collectd', {}).get('server'):
     }
 
     files['/etc/collectd.auth'] = {
-        'source': "{}/{}.auth".format(collectd_server_auth_dir, node.name),
+        'source': "server_auth/{}.auth".format(node.name),
         'owner': "root",
         'group': "root",
         'mode': "0644",
