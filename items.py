@@ -3,7 +3,6 @@ pkg_dnf = {
     'collectd-curl': {},
     'collectd-curl_json': {},
     'collectd-curl_xml': {},
-    'collectd-lvm': {},
     'collectd-netlink': {},
     'rrdtool': {},
 }
@@ -22,13 +21,14 @@ files = {
         'source': "collectd.conf",
         'owner': "root",
         'group': "root",
-        'mode': "0644",
+        'mode': "0600",
         'content_type': "mako",
         'context': {
             'collectd': node.metadata.get('collectd', {}),
         },
         'needs': [
             "pkg_dnf:collectd",
+            "pkg_dnf:rrdtool",
         ],
         'triggers': [
             "svc_systemd:collectd:restart",
@@ -71,7 +71,7 @@ if node.metadata.get('collectd', {}).get('client'):
         'source': "client.conf",
         'owner': "root",
         'group': "root",
-        'mode': "0640",
+        'mode': "0600",
         'content_type': "mako",
         'context': {
             'client': node.metadata.get('collectd', {}).get('client', {}),
@@ -89,7 +89,7 @@ if node.metadata.get('collectd', {}).get('server'):
         'source': "server.conf",
         'owner': "root",
         'group': "root",
-        'mode': "0640",
+        'mode': "0600",
         'content_type': "mako",
         'context': {
             'server': node.metadata.get('collectd', {}).get('server', {}),
@@ -102,11 +102,11 @@ if node.metadata.get('collectd', {}).get('server'):
         ],
     }
 
-    files['/etc/collectd.auth'] = {
+    files['/etc/collectd.d/collectd.auth'] = {
         'source': "server_auth/{}.auth".format(node.name),
         'owner': "root",
         'group': "root",
-        'mode': "0644",
+        'mode': "0600",
         'needs': [
             "pkg_dnf:collectd",
         ],
@@ -197,11 +197,11 @@ if node.metadata.get('collectd', {}).get('cgp', {}):
 if node.has_bundle("monit"):
     files['/etc/monit.d/collectd'] = {
         'source': "monit",
-        'mode': "0640",
+        'mode': "0600",
         'owner': "root",
         'group': "root",
         'content_type': "mako",
-       'context': {
+        'context': {
             'server': node.metadata.get('collectd', {}).get('server', {}),
         },
         'triggers': [
