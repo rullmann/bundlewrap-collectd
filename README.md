@@ -4,15 +4,6 @@
 By default data is being stored in RRD files.
 Additionally it's possible to configure collectd as server as well as client to send data encrypted to another instance.
 
-## Compatibility
-
-This bundle has been tested on the following systems:
-
-| OS          | `[x]` |
-| ----------- | ----- |
-| Fedora 24   | `[x]` |
-| Fedberry 24 | `[x]` |
-
 ## Integrations
 
 * Bundles:
