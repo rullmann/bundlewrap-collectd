@@ -9,7 +9,6 @@ pkg_dnf = {
 
 svc_systemd = {
     'collectd': {
-        'enabled': True,
         'needs': [
             "pkg_dnf:collectd",
         ],
@@ -19,8 +18,6 @@ svc_systemd = {
 files = {
     '/etc/collectd.conf': {
         'source': "collectd.conf",
-        'owner': "root",
-        'group': "root",
         'mode': "0600",
         'content_type': "mako",
         'context': {
@@ -41,16 +38,12 @@ actions = {}
 directories = {
     "/etc/collectd.d/plugins": {
         "mode": "0755",
-        "owner": "root",
-        "group": "root",
         'needs': [
             "pkg_dnf:collectd",
         ],
     },
     "/etc/collectd.d/types": {
         "mode": "0755",
-        "owner": "root",
-        "group": "root",
         'needs': [
             "pkg_dnf:collectd",
         ],
@@ -69,8 +62,6 @@ if node.metadata.get('collectd', {}).get('write_rrd', True):
 if node.metadata.get('collectd', {}).get('client'):
     files['/etc/collectd.d/client.conf'] = {
         'source': "client.conf",
-        'owner': "root",
-        'group': "root",
         'mode': "0600",
         'content_type': "mako",
         'context': {
@@ -87,8 +78,6 @@ if node.metadata.get('collectd', {}).get('client'):
 if node.metadata.get('collectd', {}).get('server'):
     files['/etc/collectd.d/server.conf'] = {
         'source': "server.conf",
-        'owner': "root",
-        'group': "root",
         'mode': "0600",
         'content_type': "mako",
         'context': {
@@ -104,8 +93,6 @@ if node.metadata.get('collectd', {}).get('server'):
 
     files['/etc/collectd.d/collectd.auth'] = {
         'source': "server_auth/{}.auth".format(node.name),
-        'owner': "root",
-        'group': "root",
         'mode': "0600",
         'needs': [
             "pkg_dnf:collectd",
@@ -186,8 +173,6 @@ if node.metadata.get('collectd', {}).get('cgp', {}):
 
     files['{}/conf/config.local.php'.format(cgp_install_path)] = {
         'source': "cgp_config",
-        'owner': "root",
-        'group': "root",
         'mode': "0644",
         'needs': [
             "git_deploy:{}".format(cgp_install_path)
@@ -198,8 +183,6 @@ if node.has_bundle("monit"):
     files['/etc/monit.d/collectd'] = {
         'source': "monit",
         'mode': "0600",
-        'owner': "root",
-        'group': "root",
         'content_type': "mako",
         'context': {
             'server': node.metadata.get('collectd', {}).get('server', {}),
