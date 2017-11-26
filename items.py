@@ -1,5 +1,6 @@
 pkg_dnf = {
     'collectd': {},
+    'collectd-chrony': {},
     'collectd-curl': {},
     'collectd-curl_json': {},
     'collectd-curl_xml': {},

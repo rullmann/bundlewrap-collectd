@@ -22,7 +22,7 @@ $CONFIG['rrdtool_opts'] = array();
 #$CONFIG['cat']['Mailservers'] = '/mail\d+/';
 
 # default plugins to show on host page
-$CONFIG['overview'] = array('load' , 'cpu' , 'cpufreq' , 'memory' , 'vmem' , 'processes' , 'conntrack' , 'contextswitch' , 'entropy' , 'irq' , 'netlink' , 'disk' , 'df' , 'uptime' , 'users' , 'nginx' , 'collectd' , 'GenericJMX' , 'postgresql' , 'tcpconns' , 'fritzbox' , 'raspberrypi' , 'curl_json' , 'curl_xml' , 'snmp' , 'hddtemp' , 'sensors');
+$CONFIG['overview'] = array('load' , 'cpu' , 'cpufreq' , 'memory' , 'vmem' , 'processes' , 'chrony' , 'conntrack' , 'contextswitch' , 'entropy' , 'irq' , 'netlink' , 'disk' , 'df' , 'uptime' , 'users' , 'nginx' , 'collectd' , 'GenericJMX' , 'postgresql' , 'tcpconns' , 'fritzbox' , 'raspberrypi' , 'curl_json' , 'curl_xml' , 'snmp' , 'hddtemp' , 'sensors');
 
 # example of filter to show only the if_octets of eth0 on host page
 # (interface must be enabled in the overview config array)
