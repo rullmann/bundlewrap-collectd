@@ -25,6 +25,10 @@ files = {
         'needs': ['pkg_dnf:collectd', 'pkg_dnf:rrdtool'],
         'triggers': ['svc_systemd:collectd:restart'],
     },
+    '/etc/collectd.d/nut.conf': {
+        'delete': True,
+        'needs': ['pkg_dnf:collectd'],
+    },
 }
 
 actions = {}
