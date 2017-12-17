@@ -8,6 +8,9 @@ pkg_dnf = {
     'rrdtool': {},
 }
 
+if node.os == 'fedora' and node.os_version >= (26):
+    pkg_dnf['collectd-disk'] = {}
+
 svc_systemd = {
     'collectd': {
         'needs': ['pkg_dnf:collectd'],
