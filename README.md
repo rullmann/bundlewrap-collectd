@@ -4,6 +4,10 @@
 By default data is being stored in RRD files.
 Additionally it's possible to configure collectd as server as well as client to send data encrypted to another instance.
 
+## Maintenance notice
+
+As of February 2018 this bundle will not be mainained anymore. If you encounter any issues I cannot help.
+
 ## Integrations
 
 * Bundles:
@@ -17,6 +21,7 @@ Additionally it's possible to configure collectd as server as well as client to 
     * Temperature data is being parsed by collectd
   * [PostgreSQL](https://github.com/rullmann/bundlewrap-postgresql)
     * Some nice database stats!
+  * Many, many more
 
 ## Metadata
 
